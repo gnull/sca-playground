@@ -44,7 +44,7 @@ int s;
 char in[1537];
 int r;
 char out[40];
-main(int argc,char **argv)
+int main(int argc,char **argv)
 {
 	if (read(0,key,sizeof key) < sizeof key) return 111;
 	AES_set_encrypt_key(key,128,&expanded);
