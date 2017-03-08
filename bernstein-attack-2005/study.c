@@ -109,7 +109,7 @@ void printpatterns(void)
 
 	for (j = 0; j < 16; ++j) {
 		for (b = 0; b < 256; ++b) {
-			printf("%2d %4d %3d %lld %.3f %.3f %.3f %.3f\n", j, size, b, tnum[j][b]
+			printf("%d %d %d %lld %.3f %.3f %.3f %.3f\n", j, size, b, tnum[j][b]
 			       , u[j][b]
 			       , udev[j][b]
 			       , u[j][b] - taverage, udev[j][b] / sqrt(tnum[j][b])
