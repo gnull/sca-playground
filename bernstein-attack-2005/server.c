@@ -6,6 +6,12 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <openssl/aes.h>
+
+#ifdef __linux__
+#include <arpa/inet.h>
+#include <unistd.h>
+#endif
+
 unsigned int timestamp(void)
 {
 	unsigned int bottom;
