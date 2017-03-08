@@ -12,6 +12,15 @@
 #include <unistd.h>
 #endif
 
+/*
+ * This function compiles into:
+ *     rdtsc
+ *     ret
+ *
+ * The bytes {15, 49} form rdtsc instruction.
+ *
+ * http://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf
+ */
 unsigned int timestamp(void)
 {
 	unsigned int bottom;
