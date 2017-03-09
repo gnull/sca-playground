@@ -1,6 +1,19 @@
 #!/usr/bin/env perl
 
 use strict;
+use warnings;
+
+if (@ARGV < 2) {
+	print  <<EOF;
+USAGE:
+  $0 repetitions iterations maxlen > output_file
+
+Call ./vulnerable program passing <iterations> as a parameter with a strings of
+length up to <maxlen>. Repeat that <repetitions> times. Output CSV to stdout.
+
+EOF
+	exit 0
+}
 
 my ($reps, $its, $maxlen) = @ARGV;
 
