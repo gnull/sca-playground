@@ -6,4 +6,5 @@ My random thoughts, plans and progress reports can be seen on [wiki](https://git
 
 ## FILES
 
-* [bernstein-attack-2005](bernstein-attack-2005) - materials of attack made by Daniel J. Bernstein
+* [strcmp-attack](strcmp-attack) - my code to estimate correlations between input of `strcmp` and its execution time
+* [bernstein-attack-2005](bernstein-attack-2005) - materials of cache timing attack made by Daniel J. Bernstein with my modifications
