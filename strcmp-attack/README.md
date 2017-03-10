@@ -28,4 +28,23 @@ make
 ./collect-external.pl 1000 100 50 > external.csv
 
 # Analyse the csv with any tool (e.g. R)
+R
+```
+
+Here is an example of simple R commands to analyse collected statistics:
+
+```R
+s = read.csv('some_file.csv')
+
+# Plot all the samples
+plot(s$cycles, s$length)
+
+# Find the correlation between cycles count and length of matched string
+cor(s$cycles, s$length)
+
+# Find the averages
+t = aggregate(s$cycles, list(s$length), mean)
+
+# Plot the average values
+plot(t$x, t$Group.1)
 ```
