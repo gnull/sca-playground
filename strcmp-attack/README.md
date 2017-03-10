@@ -4,8 +4,8 @@
 
 * `vulnerable.c` - Vulnerable program reporting number of cycles it spent
     comparing strings.
-* `collect-stats.pl` - Script for running `vulnerable` multiple times and
-    collecting the data in CSV format.
+* `collect-internal.pl` - Script for running `vulnerable` multiple times and
+    collecting timestamps provided by it in CSV format.
 
 ## EXAMPLE
 
@@ -14,10 +14,10 @@ make
 
 # See help
 ./vulnerable
-./collect-stats.pl
+./collect-internal.pl
 
 # Collect some statistics
-./collect-stats.pl 100 1000 100 > data.csv
+./collect-internal.pl 100 1000 100 > data.csv
 
 # Analyse the csv with any tool (e.g. R)
 ```
