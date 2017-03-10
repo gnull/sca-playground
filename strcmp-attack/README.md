@@ -19,9 +19,11 @@ make
 # See help
 ./vulnerable
 ./collect-internal.pl
+./collect-external.pl
 
 # Collect some statistics
-./collect-internal.pl 100 1000 100 > data.csv
+./collect-internal.pl 100 1000 100 > internal.csv
+./collect-external.pl 1000 100 50 > external.csv
 
 # Analyse the csv with any tool (e.g. R)
 ```
