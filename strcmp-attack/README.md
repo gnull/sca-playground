@@ -1,6 +1,6 @@
 # `strcmp` Timing Attack
 
-## FILES
+## Files
 
 * `vulnerable.c` - Vulnerable program reporting number of cycles it spent
     comparing strings.
@@ -11,7 +11,9 @@
 * `collect-external.pl` - The same as `collect-internal.pl`, but measures
     cycles using `timestamp` instead of relying of value reported by `vulnerable`.
 
-## EXAMPLE
+## Examples
+
+Collecting the data is straightforward:
 
 ```sh
 make
