@@ -8,6 +8,8 @@
     cycles counter.
 * `collect-internal.pl` - Script for running `vulnerable` multiple times and
     collecting timestamps provided by it in CSV format.
+* `collect-external.pl` - The same as `collect-internal.pl`, but measures
+    cycles using `timestamp` instead of relying of value reported by `vulnerable`.
 
 ## EXAMPLE
 
