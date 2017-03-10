@@ -1,5 +1,8 @@
 .PHONY: all
 
-all: vulnerable
+all: vulnerable timestamp
+
+timestamp: timestamp.c
+	gcc -O3 -o $@ $^
 
 # CFLAGS += -O2
