@@ -1,8 +1,10 @@
-# bachelor-thesis-2017
+# sca-playground
 
-I will publish here materials (e.g. source code) that are related to my work on bachelor thesis.
+I will publish here materials (e.g. source code) that are related to my
+learning of side channel attacks.
 
-My random thoughts, plans and progress reports can be seen on [wiki](https://github.com/gnull/bachelor-thesis-2017/wiki).
+My random thoughts, plans and progress can be seen on
+[wiki](https://github.com/gnull/sca-playground/wiki).
 
 ## FILES
 
