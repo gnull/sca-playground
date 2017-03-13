@@ -33,7 +33,7 @@ static void usage(const char *prog)
 
 /* TODO: Ensure that this process is being run always on the same CPU using
  * sched_setaffinity. If this condition does not hold, our measured time can be
- * messed up.
+ * messed up by scheduler.
  */
 
 int main(int argc, char **argv)
