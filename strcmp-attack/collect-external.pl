@@ -24,10 +24,7 @@ for (my $i = 0; $i < $reps; ++$i) {
 
 	my $len = int(rand $maxlen);
 	my $str = "a" x $len . "b";
-	my $begin = `./timestamp`;
-	`./vulnerable $str $its`;
-	my $end = `./timestamp`;
-	my $cycles = $end - $begin;
+	my $cycles = `./timestamp ./vulnerable $str $its`;
 	print "$its,$len,$cycles\n"
 }
 
