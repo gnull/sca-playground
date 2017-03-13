@@ -22,14 +22,13 @@ print "iterations,length,cycles\n";
 for (my $i = 0; $i < $reps; ++$i) {
 	print STDERR "\r         \r$i / $reps";
 
-	for (my $len = 0; $len < $maxlen; ++$len) {
-		my $str = "a" x $len . "b";
-		my $begin = `./timestamp`;
-		`./vulnerable $str $its`;
-		my $end = `./timestamp`;
-		my $cycles = $end - $begin;
-		print "$its,$len,$cycles\n"
-	}
+	my $len = int(rand $maxlen);
+	my $str = "a" x $len . "b";
+	my $begin = `./timestamp`;
+	`./vulnerable $str $its`;
+	my $end = `./timestamp`;
+	my $cycles = $end - $begin;
+	print "$its,$len,$cycles\n"
 }
 
 print STDERR "\n";
