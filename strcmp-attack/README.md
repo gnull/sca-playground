@@ -50,3 +50,11 @@ t = aggregate(s$cycles, list(s$length), mean)
 # Plot the average values
 plot(t$x, t$Group.1)
 ```
+
+# Notes
+
+It turns out that some CPU's can automatically change their frequency. Such
+uncontrolled random changes may introduce additional noise to measured delays.
+
+To avoid that one may use tools like `cpupower` to set CPU frequency to a
+constant value or, alternatively, disable frequency scaling in BIOS.
