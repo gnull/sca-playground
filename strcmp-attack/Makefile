@@ -2,7 +2,9 @@
 
 all: vulnerable timestamp
 
+CFLAGS = -std=gnu99
+
 timestamp: timestamp.c
-	gcc -O3 -o $@ $^
+	gcc $(CFLAGS) -O3 -o $@ $^
 
 # CFLAGS += -O2
