@@ -1,8 +1,10 @@
+#define _GNU_SOURCE
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 
 #include <unistd.h>
+#include <sched.h>
 
 #include <sys/time.h>
 #include <sys/resource.h>
@@ -31,10 +33,45 @@ static void usage(const char *prog)
 	exit(0);
 }
 
-/* TODO: Ensure that this process is being run always on the same CPU using
- * sched_setaffinity. If this condition does not hold, our measured time can be
- * messed up by scheduler.
- */
+/* WARNING: Change this constatnt for testing with different CPU numbers */
+#define CPUS 2
+
+static void configure_affinity()
+{
+	int err;
+	cpu_set_t set;
+
+	err = sched_getaffinity(0, sizeof(set), &set);
+	assert(!err);
+
+	// fprintf(stderr, "old cpuset: ");
+	// for (int i = 0; i < CPUS; ++i)
+	// 	if (CPU_ISSET(i, &set))
+	// 		fprintf(stderr, "%d:enabled ", i);
+	// 	else
+	// 		fprintf(stderr, "%d:disabled ", i);
+	// fprintf(stderr, "\n");
+
+
+	CPU_ZERO(&set);
+	CPU_SET(0, &set);
+	err = sched_setaffinity(0, sizeof(set), &set);
+	assert(!err);
+
+	CPU_ZERO(&set);
+	err = sched_getaffinity(0, sizeof(set), &set);
+	assert(!err);
+
+	// fprintf(stderr, "new cpuset: ");
+	// for (int i = 0; i < CPUS; ++i)
+	// 	if (CPU_ISSET(i, &set))
+	// 		fprintf(stderr, "%d:enabled ", i);
+	// 	else
+	// 		fprintf(stderr, "%d:disabled ", i);
+	// fprintf(stderr, "\n");
+}
+
+#undef CPUS
 
 int main(int argc, char **argv)
 {
@@ -47,6 +84,8 @@ int main(int argc, char **argv)
 
 	if (argc < 2)
 		usage(argv[0]);
+
+	configure_affinity();
 
 	null = open("/dev/null", O_WRONLY);
 	assert(null != -1);
