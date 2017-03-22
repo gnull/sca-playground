@@ -15,11 +15,21 @@
 #include <stdint.h>
 #include <assert.h>
 
+/* This function was copy-pasted from ./vulnerable.c */
 static inline uint64_t timestamp(void)
 {
 	uint32_t bottom;
 	uint32_t top;
-	asm volatile (".byte 15;.byte 49":"=a" (bottom), "=d"(top));
+	asm volatile (
+			"CPUID\n\t"
+			"RDTSC\n\t"
+			"mov %%edx, %0\n\t"
+			"mov %%eax, %1\n\t": "=r" (top), "=r" (bottom)
+#if __x86_64__
+			:: "%rax", "%rbx", "%rcx", "%rdx");
+#elif __i386__
+			:: "%eax", "%ebx", "%ecx", "%edx");
+#endif
 	return (((uint64_t) top) << 32) | bottom;
 }
 
