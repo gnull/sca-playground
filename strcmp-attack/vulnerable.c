@@ -54,13 +54,15 @@ int main(int argc, char **argv)
 
 	n = atoi(argv[2]);
 
-	if (n < 0)
+	if (n <= 0)
 		usage(argv[0]);
 
 	begin = timestamp();
 	for (int i = 0; i < n; ++i)
 		trash += strcmp(argv[1], reference);
 	end = timestamp();
+
+	(void)trash;
 
 	printf("%lld\n", end - begin);
 }
