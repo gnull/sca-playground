@@ -8,10 +8,8 @@
     resulting measured time is difference of timestamps between `fork`'ng and
     `wait`ing for child process completion. Timestamps are measured using
     `rdtcs` x86 instruction.
-* `collect-internal.pl` - Script for running `vulnerable` multiple times and
-    collecting timestamps provided by it in CSV format.
-* `collect-external.pl` - The same as `collect-internal.pl`, but measures
-    cycles using `timestamp` instead of relying of value reported by `vulnerable`.
+* `collect.pl` - Script for running a program multiple times and collecting
+    timestamps provided by it in CSV format.
 
 ## Examples
 
@@ -22,12 +20,14 @@ make
 
 # See help
 ./vulnerable
-./collect-internal.pl
-./collect-external.pl
+./timestamp
+./collect.pl
 
-# Collect some statistics
-./collect-internal.pl 100 1000 100 > internal.csv
-./collect-external.pl 1000 100 50 > external.csv
+# Collect some statistics reported by ./vulnerable
+./collect.pl ./vulnerable 100 1000 100 > internal.csv
+
+# Collect some statistics on reported by ./timestamp
+./collect.pl './timestamp ./vulnerable' 1000 100 50 > external.csv
 
 # Analyse the csv with any tool (e.g. R)
 R
