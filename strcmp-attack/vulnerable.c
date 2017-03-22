@@ -5,6 +5,8 @@
 
 /* This function is based on similar function written by Bernstein. See
  * `../bernstein-attack-2005/server.c`.
+ *
+ * http://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf
  */
 static inline uint64_t timestamp(void)
 {
