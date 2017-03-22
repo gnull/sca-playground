@@ -33,9 +33,6 @@ static void usage(const char *prog)
 	exit(0);
 }
 
-/* WARNING: Change this constatnt for testing with different CPU numbers */
-#define CPUS 2
-
 static void configure_affinity()
 {
 	int err;
@@ -43,15 +40,6 @@ static void configure_affinity()
 
 	err = sched_getaffinity(0, sizeof(set), &set);
 	assert(!err);
-
-	// fprintf(stderr, "old cpuset: ");
-	// for (int i = 0; i < CPUS; ++i)
-	// 	if (CPU_ISSET(i, &set))
-	// 		fprintf(stderr, "%d:enabled ", i);
-	// 	else
-	// 		fprintf(stderr, "%d:disabled ", i);
-	// fprintf(stderr, "\n");
-
 
 	CPU_ZERO(&set);
 	CPU_SET(0, &set);
@@ -61,17 +49,7 @@ static void configure_affinity()
 	CPU_ZERO(&set);
 	err = sched_getaffinity(0, sizeof(set), &set);
 	assert(!err);
-
-	// fprintf(stderr, "new cpuset: ");
-	// for (int i = 0; i < CPUS; ++i)
-	// 	if (CPU_ISSET(i, &set))
-	// 		fprintf(stderr, "%d:enabled ", i);
-	// 	else
-	// 		fprintf(stderr, "%d:disabled ", i);
-	// fprintf(stderr, "\n");
 }
-
-#undef CPUS
 
 int main(int argc, char **argv)
 {
