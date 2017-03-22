@@ -3,6 +3,14 @@
 #include <stdint.h>
 #include <string.h>
 
+/* This is a function pointer that prevents gcc from detecting a call to its
+ * internal strcmp and doing crazy optimizations.
+ *
+ * This pointer is not static so gcc can't be sure that it is not changed by
+ * someone from another object file and it will always be equal to `strcmp`.
+ */
+int (*my_strcmp)(const char *s1, const char *s2) = strcmp;
+
 /* This function is based on examples from Optimization Manual by Intel:
  *    http://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf
  *
@@ -69,7 +77,7 @@ int main(int argc, char **argv)
 
 	begin = timestamp();
 	for (int i = 0; i < n; ++i)
-		trash += strcmp(argv[1], reference);
+		trash += my_strcmp(argv[1], reference);
 	end = timestamp();
 
 	(void)trash;
