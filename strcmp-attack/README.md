@@ -58,3 +58,7 @@ uncontrolled random changes may introduce additional noise to measured delays.
 
 To avoid that one may use tools like `cpupower` to set CPU frequency to a
 constant value or, alternatively, disable frequency scaling in BIOS.
+
+Also, measures like increasing the process priority with the `nice` program,
+shutting down the `Xorg` server and putting down network interfaces have helped
+me to reduce standard deviation of the measurements 1.5-2 times.
