@@ -4,8 +4,10 @@
 
 * `vulnerable.c` - Vulnerable program reporting number of cycles it spent
     comparing strings.
-* `timestamp.c` - Program reporting current value of x86-specific `rdtsc`
-    cycles counter.
+* `timestamp.c` - Program to measure the execution time of other programs. The
+    resulting measured time is difference of timestamps between `fork`'ng and
+    `wait`ing for child process completion. Timestamps are measured using
+    `rdtcs` x86 instruction.
 * `collect-internal.pl` - Script for running `vulnerable` multiple times and
     collecting timestamps provided by it in CSV format.
 * `collect-external.pl` - The same as `collect-internal.pl`, but measures
@@ -48,3 +50,11 @@ t = aggregate(s$cycles, list(s$length), mean)
 # Plot the average values
 plot(t$x, t$Group.1)
 ```
+
+# Notes
+
+It turns out that some CPU's can automatically change their frequency. Such
+uncontrolled random changes may introduce additional noise to measured delays.
+
+To avoid that one may use tools like `cpupower` to set CPU frequency to a
+constant value or, alternatively, disable frequency scaling in BIOS.
