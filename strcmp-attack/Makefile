@@ -1,8 +1,5 @@
 .PHONY: all
 
+CFLAGS = -std=gnu99 -O3
+
 all: vulnerable timestamp
-
-timestamp: timestamp.c
-	gcc -O3 -o $@ $^
-
-# CFLAGS += -O2
