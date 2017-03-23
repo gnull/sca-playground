@@ -64,7 +64,6 @@ char reference[] =
 int main(int argc, char **argv)
 {
 	uint64_t begin, end;
-	int trash = 0;
 	int n;
 
 	if (argc != 3)
@@ -85,10 +84,8 @@ int main(int argc, char **argv)
 
 	begin = timestamp();
 	for (int i = 0; i < n; ++i)
-		trash += my_strcmp(argv[1], reference);
+		my_strcmp(argv[1], reference);
 	end = timestamp();
-
-	(void)trash;
 
 	printf("%lld\n", end - begin);
 }
