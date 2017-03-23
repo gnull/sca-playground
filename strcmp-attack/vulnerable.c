@@ -75,6 +75,14 @@ int main(int argc, char **argv)
 	if (n <= 0)
 		usage(argv[0]);
 
+	/* The first call to strcmp may be a lot slower than the following ones
+	 * because of STT_GNU_IFUNC mechanism. To get rid of the noise produced
+	 * by it, We do the first call outside the timestamped loop.
+	 *
+	 * For information on STT_GNU_IFUNC see http://stackoverflow.com/questions/30604987/strcmp-and-strcmp-sse-functions-in-libc
+	 */
+	my_strcmp(reference, reference);
+
 	begin = timestamp();
 	for (int i = 0; i < n; ++i)
 		trash += my_strcmp(argv[1], reference);
