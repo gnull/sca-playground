@@ -26,7 +26,7 @@ make
 # Collect some statistics reported by ./vulnerable
 ./collect.pl ./vulnerable 100 1000 100 > internal.csv
 
-# Collect some statistics on reported by ./timestamp
+# Collect some statistics reported by ./timestamp
 ./collect.pl './timestamp ./vulnerable' 1000 100 50 > external.csv
 
 # Analyse the csv with any tool (e.g. R)
