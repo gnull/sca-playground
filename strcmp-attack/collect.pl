@@ -10,8 +10,8 @@ USAGE:
 
 This script calls <command> passing strings of length up to <maxlen> as a first
 argument and <iterations> as a second argument. For each call it collects
-execution time reported by <command>. Then it repeat that procedure
-<repetitions> times and output CSV with all the collected execution times to
+execution time reported by <command>. Then it repeats that procedure
+<repetitions> times and outputs CSV with all the collected execution times to
 standard output.
 
 EOF
