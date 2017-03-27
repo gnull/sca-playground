@@ -10,6 +10,8 @@
     `rdtcs` x86 instruction.
 * `collect.pl` - Script for running a program multiple times and collecting
     timestamps provided by it in CSV format.
+* `extend-string.pl` - Script for collecting timestamps for random guesses of a
+    character following known correct prefix.
 
 ## Examples
 
