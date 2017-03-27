@@ -28,7 +28,7 @@ make
 # Collect some statistics reported by ./vulnerable
 ./collect.pl ./vulnerable 100 1000 100 > internal.csv
 
-# Collect some statistics on reported by ./timestamp
+# Collect some statistics reported by ./timestamp
 ./collect.pl './timestamp ./vulnerable' 1000 100 50 > external.csv
 
 # Analyse the csv with any tool (e.g. R)
@@ -43,11 +43,20 @@ s = read.csv('some_file.csv')
 # Plot all the samples
 plot(s$cycles, s$length)
 
+# Plot the histogram of the whole sample
+hist(s$cycles)
+
 # Find the correlation between cycles count and length of matched string
 cor(s$cycles, s$length)
 
-# Find the averages
+# Find the standard deviation of cycles count
+sd(s$cycles)
+
+# Find the cycle averages or means for each string length
 t = aggregate(s$cycles, list(s$length), mean)
+
+# Find the averages trimming 10% of the outliers
+t = aggregate(s$cycles, list(s$length), function (x) {mean(x, trim = 0.1)})
 
 # Plot the average values
 plot(t$x, t$Group.1)
