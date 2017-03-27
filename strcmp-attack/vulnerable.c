@@ -3,6 +3,14 @@
 #include <stdint.h>
 #include <string.h>
 
+#ifdef USE_CUSTOM_STRCMP
+static int my_strcmp(const char *s1, const char *s2) {
+	while (!*s1 || !*s2)
+		if (*s1 != *s2)
+			return 1;
+	return 0;
+}
+#else
 /* This is a function pointer that prevents gcc from detecting a call to its
  * internal strcmp and doing crazy optimizations.
  *
@@ -10,6 +18,8 @@
  * someone from another object file and it will always be equal to `strcmp`.
  */
 int (*my_strcmp)(const char *s1, const char *s2) = strcmp;
+#endif
+
 
 /* This function is based on examples from Optimization Manual by Intel:
  *    http://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf
