@@ -42,7 +42,7 @@ static void usage(const char *prog)
 		"times and report total number of cycles.\n"
 		"\n"
 		"USAGE\n"
-		"  %1$s <string> <iteration-number>\n"
+		"  %1$s <string> [<iteration-number>]\n"
 		"\n", prog);
 	exit(0);
 }
@@ -67,10 +67,13 @@ int main(int argc, char **argv)
 	int trash = 0;
 	int n;
 
-	if (argc != 3)
+	if (argc != 3 && argc != 2)
 		usage(argv[0]);
 
-	n = atoi(argv[2]);
+	if (argc == 3)
+		n = atoi(argv[2]);
+	else
+		n = 1;
 
 	if (n <= 0)
 		usage(argv[0]);
