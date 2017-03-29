@@ -26,7 +26,7 @@ for (my $i = 0; $i < $reps; ++$i) {
 	print STDERR "\r         \r$i / $reps" if ($i % 100 == 0);
 
 	my $len = int(rand $maxlen);
-	my $str = "a" x $len . "b";
+	my $str = "a" x $len . "b" x ($maxlen - $len);
 	my $cycles = `$cmd $str $its`;
 	chomp($cycles);
 	print "$its,$len,$cycles\n"
